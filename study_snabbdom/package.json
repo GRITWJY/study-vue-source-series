@@ -1,0 +1,17 @@
+{
+  "name": "study_snabbdom",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "snabbdom": "^3.0.3",
+    "webpack": "^5.51.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.2"
+  }
+}
