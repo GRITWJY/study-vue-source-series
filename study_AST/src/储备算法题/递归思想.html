@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+	// 斐波那契数列
+
+  // 如何解决重复计算的问题?
+  // * cache思想,缓存
+  var cache = {};
+	function fib(n) {
+		if (cache.hasOwnProperty(n)) {
+			return cache[n];// 注意,不能.n;这里是用变量!!!
+    }
+
+		var val = n == 0 || n == 1 ? 1 : fib(n - 1) + fib(n - 2)
+    cache[n] = val
+
+		return val;
+	}
+
+	console.log(fib(6))
+</script>
+</body>
+</html>

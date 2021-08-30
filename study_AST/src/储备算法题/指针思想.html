@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+
+	var str = 'aaaaaaaabbbbbbbbbbbccccccccccccdddddfasfas'
+
+	// 指针
+	var i = 0
+	var j = 1
+	var maxRepeat = 0
+	var maxChar = ''
+
+	// 当还在范围内,继续寻找
+	while (i <= str.length - 1) {
+		if (str[i] !== str[j]) {
+			if (j - i > maxRepeat) {
+				maxRepeat = j - i
+				maxChar = str[i]
+			}
+			i = j
+		}
+		j++;
+	}
+
+	console.log(maxChar, maxRepeat)
+
+
+</script>
+</body>
+</html>

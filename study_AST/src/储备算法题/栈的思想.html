@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--
+2[3[a]4[1[b]2[c]]]
+
+栈1:  2,3,4,1,2
+栈2:  [ [a] [[b][c]] ]
+
+遇见数字推入栈1, 遇见[推入栈2
+遇见] 从栈2 里拿到 [a],以及从栈1拿一个数字,重复
+aaabccbcc aaabccbcc
+
+
+正则表达式的相关方法
+abcdefg123mnp
+
+'abcdefg123mnp'.replace(/\d/g,'')
+"abcdefg123mnp".match(/\d/g)
+'34[abc]'.match(/^(\d+)\[/) 捕获结果在下标为1,(表示捕获)
+/^\d/.test('aabc')
+-->
+
+<script>
+	var arr = "2[3[a]4[4[b]2[c]]]"
+
+//   aaabccbccbccbcc
+
+	function smartRepeat(arr) {
+		var index = 0//指针
+		var stk1 = []
+		var stk2 = []
+
+		// 剩余部分
+		var rest = arr
+
+		// 如果for其步长固定,遇到22等不好获取
+		while (index < arr.length - 1) {
+			rest = arr.substring(index)
+			// 看当前剩余部分是不是以数字开头
+			if ((/^\d+\[/).test(rest)) {
+				// 得到数字
+				let times = Number(rest.match(/^(\d+)\[/)[1])
+				stk1.push(times)
+				stk2.push('')
+				index += times.toString().length + 1;
+			}
+			else if (/^\w+/.test(rest)) {
+				let word = rest.match(/^(\w+)/)[1]
+				stk2[stk2.length - 1] = word
+				index += word.length
+			}
+			else if (rest[0] == ']'){
+				let times = stk1.pop()
+        let word = stk2.pop()
+        stk2[stk2.length - 1] += word.repeat(times)
+				index++
+			}
+		}
+    return stk2[0].repeat(stk1[0])
+
+	}
+
+	console.log(smartRepeat(arr))
+
+</script>
+</body>
+</html>

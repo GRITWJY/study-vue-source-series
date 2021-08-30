@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<!--
+试将高维数组[1,2,[3,[4,5],6],7,[8],9],变为所示对象
+
+ * 形式转换
+
+ * 规则复现
+-->
+<script>
+	var arr = [[1], [2, [3, [4, [5], 6], 7], 8], [9]]
+
+  // 写法一
+	function fn(arr) {
+		//结果数组
+		var result = []
+		for (let i = 0; i < arr.length; i++) {
+			if (!Array.isArray(arr[i])) { //遍历到的是数字
+				result.push({value: arr[i]})
+			} else {
+				result.push({children: fn(arr[i])})
+			}
+		}
+		return result
+	}
+
+	// 写法二:可能是数组,也可能是数字
+  // map方法
+  // 写法一递归次数少
+  function fn2(item) {
+    if (typeof item == 'number') {
+    	return { value:item }
+    }
+    else if (Array.isArray(item)) {
+    	return {
+    		children: item.map(_item => fn2(_item))
+      }
+    }
+
+  }
+
+	console.log(fn2(arr))
+
+</script>
+
+</body>
+</html>
