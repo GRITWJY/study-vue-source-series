@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="container"></div>
+<script src="jslib/mustache.js"></script>
+<script>
+
+  /* 简单循环
+  * <ul>
+  *   {{#arr}}
+  *     <li>{{.}}</li>
+  *   {{/arr}}
+  * </ul>
+  *
+  * data = {
+  * arr:['A','B',''C]
+  * }
+  *
+  * */
+
+  var templateStr = `
+      <ul>
+        {{#arr}}
+         <li>
+          {{name}}的爱好是:
+          <ol>
+            {{$hobbies}}
+              <li>{{.}}</li>
+            {{/hobbies}}
+          </ol>
+         </li>
+        {{/arr}}
+      </ul>
+		`;
+  //数组嵌套
+   data = {
+   	arr:[
+      {'name':'小明','age':12,'hobbies':['游泳','羽毛球']},
+      {'name':'小明','age':12,'hobbies':['游泳','羽毛球']},
+      {'name':'小明','age':12,'hobbies':['游泳','羽毛球']},
+    ]
+   }
+
+
+   var templateStr2 = `
+     {{#m}}
+      <h1>你好</h1>
+     {{/m}}
+   `
+
+  //bool值
+  data2 = {
+   	m:false
+  }
+
+</script>
+</body>
+</html>

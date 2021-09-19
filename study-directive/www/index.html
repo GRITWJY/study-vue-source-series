@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <div id="app">
+    <div class="doms" v-if="a>8">
+      <input type="text" v-model="a">
+      <h3 class="title">你好</h3>
+      <ul>
+        <li>A</li>
+        <li>B</li>
+        <li>C</li>
+      </ul>
+    </div>
+  </div>
+  <script src="/xuni/bundle.js"></script>
+  <script>
+    new Vue({
+      el:'#app',
+      data:{
+      	a:10
+      }
+    });
+  </script>
+</body>
+</html>
