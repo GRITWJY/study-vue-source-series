@@ -12,24 +12,21 @@ const patch = init([classModule, propsModule, styleModule, eventListenersModule]
 const container = document.getElementById('container');
 const btn = document.getElementById('btn');
 
-const vnode1 = h('ul',{},[
+const vnode1 = h('ul',{key:'ul'},[
 	h('li',{key:'A'},'a'),
 	h('li',{key:'B'},'b'),
 	h('li',{key:'C'},'c'),
 	h('li',{key:'D'},'d'),
 ])
 
-
+// 上树
 patch(container,vnode1)
-
-
-
-const vnode2 = h('ul',{},[
+const vnode2 = h('ol',{key:'ul'},[
 	h('li',{key:'A'},'a'),
+	h('li',{key:'E'},'e'),
 	h('li',{key:'B'},'b'),
 	h('li',{key:'C'},'c'),
 	h('li',{key:'D'},'d'),
-	h('li',{key:'E'},'e'),
 ])
 
 //点击按钮时,将vnode1变为vnode2
