@@ -2,6 +2,8 @@
 const path = require('path');
 
 module.exports = {
+
+		mode:"development",
     // 入口
     entry: './src/index.js',
     // 出口

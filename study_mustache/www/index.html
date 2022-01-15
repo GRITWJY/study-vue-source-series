@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script src="/xuni/bundle.js"></script>
+<script>
+  // 模板字符串
+  var templateStr = '我买了一个{{thing}},好{{mood}}啊';
+
+  var templateStr2 = `
+      <ul>
+        {{#arr}}
+         <li>
+           <div class="hd">{{name}}</div>
+           <div class="bd">
+            <p>姓名:{{name}}</p>
+            <p>年龄:{{age}}</p>
+            <p>性别:{{sex}}</p>
+           </div>
+         </li>
+        {{/arr}}
+      </ul>
+		`;
+
+  // 数据
+  var data = {
+  	thing:"华为手机",
+    mood:"开心"
+  };
+  // 调用render
+  WJY_TemplateEngine.render(templateStr,data)
+</script>
+</body>
+</html>
