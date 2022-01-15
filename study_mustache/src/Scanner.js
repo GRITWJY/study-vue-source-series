@@ -5,7 +5,6 @@
 export default class Scanner {
 	constructor(templateStr) {
 		this.templateStr = templateStr
-		console.log('--------------scanner类被调用,开始解析模板')
 		// 指针
 		this.pos = 0
 		// 尾巴

@@ -1,4 +1,5 @@
 import Scanner from "./Scanner";
+import nestTokens from "./nestTokens";
 
 /*
 * 生成tokens数组
@@ -6,31 +7,28 @@ import Scanner from "./Scanner";
 
 export default function parseTemplateToTokens(templateStr) {
 	var tokens = [];
-	// 创建扫描器
 	var scanner = new Scanner(templateStr)
-	// 扫描器工作
 	var words
 	while (scanner.eos()) {
-		// 1、 收集开始标记之前的文字
 		words = scanner.scanUtil("{{")
 		if (words != '') {
 			tokens.push(['text', words])
 		}
-
-		// 2、 跳过开始标记
 		scanner.scan("{{")
 
-		// 3、 收集参数
 		words = scanner.scanUtil("}}")
-		if (words!='' ) {
-			tokens.push(['name', words])
+		if (words != '') {
+
+			if (words[0] == '#') {
+				tokens.push(['#', words.substring(1)])
+			} else if (words[0] == '/') {
+				tokens.push(['/', words.substring(1)])
+			} else {
+				tokens.push(['name',words])
+			}
 		}
-
-		// 4、 跳出结束标记
 		scanner.scan("}}")
-
-		// 5、 重复
 	}
 
-	return tokens
+	return nestTokens(tokens)
 }

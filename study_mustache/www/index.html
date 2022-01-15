@@ -5,33 +5,50 @@
   <title>Title</title>
 </head>
 <body>
+<div id="container"></div>
 <script src="/xuni/bundle.js"></script>
 <script>
-  // 模板字符串
-  var templateStr = '我买了一个{{thing}},好{{mood}}啊';
+	// 模板字符串
+	var templateStr = '我买了一个{{thing}},好{{mood}}啊,{{a.b.c}}';
+	var data = {
+		thing:"华为手机",
+		mood:"开心",
+		a:{
+			b:{
+				c:123
+			}
+		}
+	}
 
-  var templateStr2 = `
+
+	var templateStr3 = `
       <ul>
         {{#arr}}
          <li>
-           <div class="hd">{{name}}</div>
-           <div class="bd">
-            <p>姓名:{{name}}</p>
-            <p>年龄:{{age}}</p>
-            <p>性别:{{sex}}</p>
-           </div>
+          {{name}}的爱好是:
+          <ol>
+            {{#hobbies}}
+              <li>{{.}}</li>
+            {{/hobbies}}
+          </ol>
          </li>
         {{/arr}}
       </ul>
 		`;
+	//数组嵌套
+	var data3 = {
+		arr: [
+			{'name': '小明', 'age': 12, 'hobbies': ['游泳', '羽毛球']},
+			{'name': '小明', 'age': 12, 'hobbies': ['游泳', '羽毛球']},
+			{'name': '小明', 'age': 12, 'hobbies': ['游泳', '羽毛球']},
+		]
+	}
 
-  // 数据
-  var data = {
-  	thing:"华为手机",
-    mood:"开心"
-  };
-  // 调用render
-  WJY_TemplateEngine.render(templateStr,data)
+
+	// 调用render
+	var domstr = WJY_TemplateEngine.render(templateStr3, data3)
+	var container = document.getElementById('container')
+	container.innerHTML = domstr
 </script>
 </body>
 </html>
