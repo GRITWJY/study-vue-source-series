@@ -13,7 +13,7 @@ module.exports = {
     },
     devServer: {
         // 端口号
-        port: 8080,
+        port: 8085,
         // 静态资源文件夹
         contentBase: 'www'
     }

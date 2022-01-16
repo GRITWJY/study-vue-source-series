@@ -7,29 +7,44 @@
 <body>
 <script>
 
+	// 字符串中连续重复字数最多
 	var str = 'aaaaaaaabbbbbbbbbbbccccccccccccdddddfasfas'
 
 	// 指针
-	var i = 0
-	var j = 1
-	var maxRepeat = 0
-	var maxChar = ''
+	var i = 0 // 移动指针
+	var j = 1  // 指向连续字符起始位置
+	var maxRepeat = 0 // 最大长度
+	var maxChar = '' // 最大长度的字符
+
+	// while (i <= str.length - 1) {
+	// 	if (str[i] != str[j]) {
+  //     if (j-i > maxRepeat) {
+  //     	maxRepeat=j-i
+  //       maxChar = str[i]
+  //     }
+	// 		i = j
+	// 	}
+	// 	j++;
+	// }
 
 	// 当还在范围内,继续寻找
 	while (i <= str.length - 1) {
+		// 如果前和后不同
 		if (str[i] !== str[j]) {
+			// 获取j-i，即字符串的长度，如果大于maxrepeat,j就更新
 			if (j - i > maxRepeat) {
 				maxRepeat = j - i
 				maxChar = str[i]
 			}
+			// 把i定位到j
 			i = j
 		}
+		// 前和后相同，就移动j指针，直到第一个不相同的地方
+	  // 这样j-i就是长度了
 		j++;
 	}
 
 	console.log(maxChar, maxRepeat)
-
-
 </script>
 </body>
 </html>
