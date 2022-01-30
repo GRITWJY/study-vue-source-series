@@ -1,7 +1,6 @@
 var uid = 0;
 export default class Dep {
   constructor() {
-    console.log("我是DEP类的构造器");
     this.id = uid++;
     // 用数组存储自己的订阅者
     // 这个数组里面放的是Watcher的实例
@@ -19,8 +18,6 @@ export default class Dep {
   }
   // 通知更新
   notify() {
-    console.log("我是notify");
-
     const subs = this.subs.slice();
     for (let i = 0, l = subs.length; i < l; i++) {
       subs[i].update();

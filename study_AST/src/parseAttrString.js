@@ -3,8 +3,11 @@
 
 {name: value:}
  */
-export default function (attr){
-	if (attr == undefined) { return [] };
+export default function (attr) {
+	if (attr == undefined) {
+		return []
+	}
+	;
 
 	var isyinhao = false //是否在引号内
 	var point = 0 // 断电
@@ -21,13 +24,13 @@ export default function (attr){
 		if (char == '"') {
 			isyinhao = !isyinhao
 		}
-		// 空格不在引号中，且碰到了空格，相当于得到了不同类型的属性，此时就要获取这一段内容
+			// 空格不在引号中，且碰到了空格，相当于得到了不同类型的属性，此时就要获取这一段内容
 			// point是上次留下来的位置，即开头
-			// I是此时的位置
+		// I是此时的位置
 		else if (char == ' ' && !isyinhao) {
 			// 遇见了空格,并且不在引号中
 			// 还得判断是不是纯空格
-			if (!/^\s*$/.test(attr.substring(point,i))) {
+			if (!/^\s*$/.test(attr.substring(point, i))) {
 				// 把这个属性的内容全部存入，转为小写
 				result.push(attr.substring(point, i).trim())
 				point = i
@@ -44,8 +47,8 @@ export default function (attr){
 		// 任意 = "(任意)"
 		const o = item.match(/^(.+)="(.+)"$/)
 		return {
-			name:o[1],
-			value:o[2]
+			name: o[1],
+			value: o[2]
 		}
 	})
 

@@ -15,7 +15,6 @@ export default function parseTemplateToTokens(templateStr) {
 			tokens.push(['text', words])
 		}
 		scanner.scan("{{")
-
 		words = scanner.scanUtil("}}")
 		if (words != '') {
 
