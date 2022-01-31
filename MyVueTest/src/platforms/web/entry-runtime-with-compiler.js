@@ -30,11 +30,10 @@ Vue.prototype.$mount = function (el, hydrating) {
 		// 如果存在模板,执行编译
 		if (template) {
 			let render = function () {
-				console.log('wjy render')
+				return 'wjy render'
 			}
-			console.log('wjyoptions',options)
+			console.log('wjyoptions', options)
 			options.render = render
-
 		}
 	}
 
