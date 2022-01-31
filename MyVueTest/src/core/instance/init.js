@@ -1,3 +1,6 @@
+import {initRender} from "./render";
+import {initProxy} from "./proxy";
+
 export function initMixin(Vue) {
 	Vue.prototype._init = function (options) {
 		const vm = this
@@ -10,6 +13,9 @@ export function initMixin(Vue) {
 		} else {
 			vm.$options = options
 		}
+
+		initProxy(vm)
+		initRender(vm)     // 声明$slots, $createElement()
 
 
 		if (vm.$options.el) {

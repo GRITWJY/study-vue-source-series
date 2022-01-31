@@ -1,3 +1,12 @@
+
+
+export function initRender(vm) {
+	// render(h) 此处的$createElement就是h
+	vm.$createElement = (a, b, c, d) => createElement(vm, a, b, c, d, true)
+
+}
+
+
 export function renderMixin(Vue) {
 
 	Vue.prototype._render = function () {
@@ -6,10 +15,7 @@ export function renderMixin(Vue) {
 		const {render} = vm.$options
 
 		let vnode
-		// vnode = render.call(vm._renderProxy, vm.$createElement)
-
-		console.log('render.js')
-		vnode = render()
+		vnode = render.call(vm._renderProxy, vm.$createElement)
 		return vnode
 	}
 }
