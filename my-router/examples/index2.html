@@ -27,7 +27,12 @@
 
 		// 1. 定义 (路由) 组件。
 		// 可以从其他文件 import 进来
-		const Foo = {template: '<div>foo</div>'}
+		const Foo = {
+			template: '<div>foo</div>', mounted() {
+				console.log(this.$parent)
+				console.log('wjy666', this.$route, this.$router)
+			}
+		}
 		const Bar = {template: '<div>bar</div>'}
 
 		// 2. 定义路由

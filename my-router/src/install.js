@@ -32,15 +32,19 @@ export function install(Vue) {
 				this._router.init(this)
 				Vue.util.defineReactive(this, '_route', this._router.history.current)
 			} else {
-				// todo：
+				// 所有组件拿到router,route
+				this._routerRoot = (this.$parent && this.$parent._routerRoot) || this
 			}
 			// todo:
 		},
 		destroyed() {
 		}
 	})
+	Object.defineProperty(Vue.prototype, '$router', {
+		get () { return this._routerRoot._router }
+	})
 
-	Object.defineProperty(Vue.prototype, '$route', {
+		Object.defineProperty(Vue.prototype, '$route', {
 		// this._router.history.current)
 		get () { return this._routerRoot._route }
 	})

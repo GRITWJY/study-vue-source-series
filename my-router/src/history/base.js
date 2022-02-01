@@ -13,7 +13,6 @@ export class History {
 
 	transitionTo(location, onComplete, onAbort) {
 		const route = this.router.match(location, this.current)
-		console.log('wjy-route', route)
 		this.confirmTransition(route,
 			() => {
 				this.updateRoute(route)
