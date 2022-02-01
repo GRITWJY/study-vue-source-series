@@ -4,8 +4,14 @@ import {
 } from '../util/index'
 
 export function lifecycleMixin(Vue) {
-	Vue.prototype._update = function (VNode, hydrating) {
-		console.log('wjy-update', VNode)
+	Vue.prototype._update = function (vnode, hydrating) {
+		const vm = this
+		const prevVnode = vm._vnode
+		console.log(prevVnode)
+		if (!prevVnode) {
+			// 传入的是真实的dom
+			vm.__patch__(vm.$el, vnode, hydrating, false)
+		}
 	}
 }
 
@@ -13,11 +19,11 @@ export function lifecycleMixin(Vue) {
 export function mountComponent(vm, el, hydrating) {
 	vm.$el = vm
 	let updateComponent
-	console.log(vm._render())
 	updateComponent = () => {
 		vm._update(vm._render(), hydrating)
 	}
 
+	console.log(vm._update(vm._render(), hydrating))
 
 	new Watcher(vm, updateComponent, noop, {}, true)
 

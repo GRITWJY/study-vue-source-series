@@ -30,7 +30,7 @@ Vue.prototype.$mount = function (el, hydrating) {
 		// 如果存在模板,执行编译
 		if (template) {
 			let render = function (createElement) {
-				return createElement('div', 'gsd')
+				return createElement('div', 'wjy')
 			}
 			console.log('wjyoptions', options)
 			options.render = render
