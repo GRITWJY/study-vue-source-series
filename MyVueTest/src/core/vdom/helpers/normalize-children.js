@@ -1,5 +1,5 @@
 import {isPrimitive} from "../../../shared/util";
-import {createTextVNode} from "../VNode";
+import {createTextVNode} from "../vnode";
 
 export function normalizeChildren(children) {
 	return isPrimitive(children)

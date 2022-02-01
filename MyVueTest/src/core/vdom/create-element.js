@@ -1,4 +1,4 @@
-import VNode from "./VNode";
+import Vnode from "./vnode";
 import {isPrimitive, isTrue} from "../../shared/util";
 
 import {
@@ -29,7 +29,7 @@ export function _createElement(context, tag, data, children, normalizationType) 
 	}
 	let vnode
 	if (typeof tag === 'string') {
-		vnode = new VNode(
+		vnode = new Vnode(
 			tag, data, children,
 			undefined, undefined, context
 		)

@@ -25,7 +25,6 @@ Vue.prototype.$mount = function (el, hydrating) {
 			let render = function (createElement) {
 				return createElement('h1', 'wfasfjkalfjl')
 			}
-			console.log('wjyoptions', options)
 			options.render = render
 		}
 	}

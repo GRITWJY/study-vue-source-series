@@ -2,7 +2,7 @@ import {
 	isUndef,
 	isDef, isPrimitive
 } from "../../shared/util";
-import VNode from "./VNode";
+import Vnode from "./vnode";
 
 export function createPatchFunction(backend) {
 	const {modules, nodeOps} = backend
@@ -43,7 +43,7 @@ export function createPatchFunction(backend) {
 
 	// 创建空节点
 	function emptyNodeAt(elm) {
-		return new VNode(nodeOps.tagName(elm).toLowerCase(), {}, [], undefined, elm)
+		return new Vnode(nodeOps.tagName(elm).toLowerCase(), {}, [], undefined, elm)
 	}
 
 	return function patch(oldVnode, vnode, hydrating, removeOnly) {

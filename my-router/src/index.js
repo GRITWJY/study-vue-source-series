@@ -6,6 +6,7 @@ import {supportsPushState} from "./util/push-state";
 import {HashHistory} from "./history/hash";
 import {HTML5History} from "./history/html5";
 import {AbstractHistory} from "./history/abstract";
+import {createMatcher} from "./creat-matcher";
 
 export default class MyVueRouter {
 
@@ -15,6 +16,7 @@ export default class MyVueRouter {
 		this.app = null
 		this.apps = []
 		this.options = options
+		this.matcher = createMatcher(options.routes || [], this)
 
 
 		let mode = options.mode || 'hash'
@@ -45,6 +47,11 @@ export default class MyVueRouter {
 
 	}
 
+
+	match(raw, current, redirectedFrom) {
+		return this.matcher.match(raw, current, redirectedFrom)
+	}
+
 	init(app) {
 		this.apps.push(app)
 		// todo:
@@ -53,9 +60,16 @@ export default class MyVueRouter {
 		const history = this.history
 
 		if (history instanceof HTML5History) {
-			// todo:
+			history.transitionTo(history.getCurrentLocation)
 		} else if (history instanceof HashHistory) {
-			// todo:
+			const setupHashListener = () => {
+				history.setupListeners()
+			}
+			history.transitionTo(
+				history.getCurrentLocation,
+				setupHashListener,
+				setupHashListener
+			)
 		}
 		// todo：
 
