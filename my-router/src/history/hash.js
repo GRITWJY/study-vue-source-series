@@ -8,6 +8,8 @@ export class HashHistory extends History {
 	setupListeners() {
 		window.addEventListener('hashchange', () => {
 			console.log('wjy-listener')
+			// gethansh是改变的的hash值
+			this.transitionTo(getHash())
 		})
 	}
 
@@ -19,5 +21,10 @@ export class HashHistory extends History {
 
 
 export function getHash() {
-	return ''
+	let href = window.location.href
+	const index = href.indexOf('#')
+	if (index < 0) return ''
+
+	href = href.slice(index + 1)
+	return href
 }

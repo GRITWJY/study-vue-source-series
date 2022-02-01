@@ -47,6 +47,7 @@ export default class MyVueRouter {
 
 
 	match(raw, current, redirectedFrom) {
+		// 这是createMatcher里的match方法
 		return this.matcher.match(raw, current, redirectedFrom)
 	}
 
@@ -58,24 +59,22 @@ export default class MyVueRouter {
 		const history = this.history
 
 		if (history instanceof HTML5History) {
-			history.transitionTo(history.getCurrentLocation)
+			history.transitionTo(history.getCurrentLocation())
 		} else if (history instanceof HashHistory) {
 			const setupHashListener = () => {
 				history.setupListeners()
 			}
 			history.transitionTo(
-				history.getCurrentLocation,
+				history.getCurrentLocation(),
 				setupHashListener,
 				setupHashListener
 			)
 		}
-
 		history.listen(route => {
 			this.apps.forEach(app => {
 				app._route = route
 			})
 		})
-
 	}
 }
 

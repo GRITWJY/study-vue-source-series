@@ -30,5 +30,6 @@ export class History {
 
 	updateRoute(route) {
 		this.current = route
+		this.cb && this.cb(route)
 	}
 }
