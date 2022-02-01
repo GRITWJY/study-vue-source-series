@@ -1,64 +1,29 @@
+import {createRouteMap} from "./create-route-map";
+
 export function createMatcher(routes, router) {
 
-	function match(raw) {
+	const {pathList, pathMap, nameMap} = createRouteMap(routes)
+
+	console.log(pathMap, pathList, nameMap)
+	function match(raw, currentRoute, redirectedForm) {
 		console.log(raw)
-		if (raw === '/foo') {
-			return {
-				"meta": {},
-				"path": "/foo",
-				"hash": "",
-				"query": {},
-				"params": {},
-				"fullPath": "/foo",
-				"matched": [{
-					"path": "/foo",
-					"regex": {"keys": []},
-					"components": {"default": {"template": "<div>foo</div>"}},
-					"alias": [],
-					"instances": {},
-					"enteredCbs": {},
-					"meta": {},
-					"props": {}
-				}]
-			}
-		} else if (raw === '/bar') {
-			return {
-				"meta": {},
+		return {
+			"meta": {},
+			"path": "/bar",
+			"hash": "",
+			"query": {},
+			"params": {},
+			"fullPath": "/bar",
+			"matched": [{
 				"path": "/bar",
-				"hash": "",
-				"query": {},
-				"params": {},
-				"fullPath": "/bar",
-				"matched": [{
-					"path": "/bar",
-					"regex": {"keys": []},
-					"components": {"default": {"template": "<div>bar</div>"}},
-					"alias": [],
-					"instances": {},
-					"enteredCbs": {},
-					"meta": {},
-					"props": {}
-				}]
-			}
-		} else {
-			return {
+				"regex": {"keys": []},
+				"components": {"default": {"template": "<div>bar</div>"}},
+				"alias": [],
+				"instances": {},
+				"enteredCbs": {},
 				"meta": {},
-				"path": "/foo",
-				"hash": "",
-				"query": {},
-				"params": {},
-				"fullPath": "/foo",
-				"matched": [{
-					"path": "/foo",
-					"regex": {"keys": []},
-					"components": {"default": {"template": "<div>foo</div>"}},
-					"alias": [],
-					"instances": {},
-					"enteredCbs": {},
-					"meta": {},
-					"props": {}
-				}]
-			}
+				"props": {}
+			}]
 		}
 	}
 
