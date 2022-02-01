@@ -1,6 +1,5 @@
 export function createPatchFunction(backend) {
-	console.log(backend)
-	return function () {
-		console.log('wjy-createPatchFunction')
+	return function patch(oldVnode, vnode, hydrating, removeOnly) {
+		console.log('gsd-patch')
 	}
 }

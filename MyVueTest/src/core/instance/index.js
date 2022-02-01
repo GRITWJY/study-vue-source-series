@@ -1,5 +1,5 @@
 import {initMixin} from "./init";
-import { renderMixin } from './render'
+import {renderMixin} from './render'
 import {lifecycleMixin} from "./lifecycle";
 
 
