@@ -7,7 +7,6 @@ export function lifecycleMixin(Vue) {
 	Vue.prototype._update = function (vnode, hydrating) {
 		const vm = this
 		const prevVnode = vm._vnode
-		console.log(prevVnode)
 		if (!prevVnode) {
 			// 传入的是真实的dom
 			vm.__patch__(vm.$el, vnode, hydrating, false)
@@ -15,18 +14,13 @@ export function lifecycleMixin(Vue) {
 	}
 }
 
-
 export function mountComponent(vm, el, hydrating) {
-	vm.$el = vm
+	vm.$el = el
 	let updateComponent
 	updateComponent = () => {
 		vm._update(vm._render(), hydrating)
 	}
-
 	console.log(vm._update(vm._render(), hydrating))
-
 	new Watcher(vm, updateComponent, noop, {}, true)
-
 	return vm
-
 }

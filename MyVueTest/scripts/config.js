@@ -39,7 +39,7 @@ function genConfig (name) {
 		output: {
 			file: opts.dest,
 			format: opts.format,
-			name: opts.moduleName || 'Vue'
+			name: 'Vue'
 		},
 	}
 	return config

@@ -5,5 +5,7 @@ export function query(el) {
 			return document.createElement('div')
 		}
 		return selected
+	} else {
+		return el
 	}
 }

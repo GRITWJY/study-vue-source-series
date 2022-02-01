@@ -6,20 +6,12 @@ const mount = Vue.prototype.$mount
 
 Vue.prototype.$mount = function (el, hydrating) {
 	el = el && query(el)
-
-	//解析option选项
 	const options = this.$options
-
-	// resolve template/el and convert to render function
-	//先判断是否有render
 	if (!options.render) {
 		let template = options.template
-		// 模板解析
 		if (template) {
 			if (typeof template === 'string') {
-
 			} else if (template.nodeType) {
-
 			} else {
 				return this
 			}
@@ -31,14 +23,13 @@ Vue.prototype.$mount = function (el, hydrating) {
 		if (template) {
 			// todo：
 			let render = function (createElement) {
-				return createElement('div', 'wjy')
+				return createElement('h1', 'wfasfjkalfjl')
 			}
 			console.log('wjyoptions', options)
 			options.render = render
 		}
 	}
-
-	return mount.call(this, el, hydrating)
+	mount.call(this, el, hydrating)
 
 }
 
