@@ -1,4 +1,4 @@
-
+import {createElement} from "../vdom/create-element";
 
 export function initRender(vm) {
 	// render(h) 此处的$createElement就是h
@@ -16,6 +16,7 @@ export function renderMixin(Vue) {
 
 		let vnode
 		vnode = render.call(vm._renderProxy, vm.$createElement)
+		console.log('wjy-vnode', vnode)
 		return vnode
 	}
 }
