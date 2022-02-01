@@ -5,7 +5,6 @@ import View from './components/view'
 export let _Vue
 
 export function install(Vue) {
-	console.log('wjy-install')
 
 	if (install.installed && _Vue === Vue) return
 	install.installed = true
@@ -31,6 +30,7 @@ export function install(Vue) {
 				this._routerRoot = this
 				this._router = this.$options.router
 				this._router.init(this)
+				Vue.util.defineReactive(this, '_route', this._router.history.current)
 			} else {
 				// todo：
 			}
@@ -39,6 +39,12 @@ export function install(Vue) {
 		destroyed() {
 		}
 	})
+
+	Object.defineProperty(Vue.prototype, '$route', {
+		// this._router.history.current)
+		get () { return this._routerRoot._route }
+	})
+
 
 	Vue.component('RouterLink', Link)
 	Vue.component('RouterView', View)

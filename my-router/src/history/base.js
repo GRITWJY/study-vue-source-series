@@ -11,12 +11,12 @@ export class History {
 		this.cb = cb
 	}
 
-
 	transitionTo(location, onComplete, onAbort) {
 		const route = this.router.match(location, this.current)
-		this.confirmTransition(
-			route,
+		console.log('wjy-route', route)
+		this.confirmTransition(route,
 			() => {
+				this.updateRoute(route)
 			},
 			err => {
 			}
@@ -24,6 +24,10 @@ export class History {
 	}
 
 	confirmTransition(route, onComplete, onAbort) {
+		onComplete()
+	}
 
+	updateRoute(route) {
+		this.current = route
 	}
 }

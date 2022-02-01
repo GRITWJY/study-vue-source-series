@@ -8,3 +8,4 @@ export function createRoute(record, location, redirectedFrom, router) {
 export const START = createRoute(null, {
 	path: '/'
 })
+

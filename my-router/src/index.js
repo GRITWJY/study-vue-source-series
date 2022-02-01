@@ -10,7 +10,6 @@ import {createMatcher} from "./creat-matcher";
 export default class MyVueRouter {
 
 	constructor(options = {}) {
-		console.log('wjy-constructor', options)
 
 		this.app = null
 		this.apps = []
