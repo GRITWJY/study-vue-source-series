@@ -1,3 +1,7 @@
+import Link from './components/link'
+import View from './components/view'
+
+
 export let _Vue
 
 export function install(Vue) {
@@ -34,10 +38,10 @@ export function install(Vue) {
 		},
 		destroyed() {
 		}
-
 	})
 
-	// todo:
+	Vue.component('RouterLink', Link)
+	Vue.component('RouterView', View)
 
 
 }

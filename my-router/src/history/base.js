@@ -7,6 +7,11 @@ export class History {
 		this.current = START
 	}
 
+	listen(cb) {
+		this.cb = cb
+	}
+
+
 	transitionTo(location, onComplete, onAbort) {
 		const route = this.router.match(location, this.current)
 		this.confirmTransition(

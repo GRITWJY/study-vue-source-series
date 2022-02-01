@@ -1,7 +1,6 @@
 import {install} from "./install";
-import {inBrowser} from './dom'
 import {supportsPushState} from "./util/push-state";
-
+import {inBrowser} from "./util/dom";
 
 import {HashHistory} from "./history/hash";
 import {HTML5History} from "./history/html5";
@@ -71,11 +70,18 @@ export default class MyVueRouter {
 				setupHashListener
 			)
 		}
-		// todo：
 
+		history.listen(route => {
+			this.apps.forEach(app => {
+				app._route = route
+			})
+		})
 
 	}
 }
 
 
 MyVueRouter.install = install
+if (inBrowser && window.Vue) {
+	window.Vue.use(MyVueRouter)
+}
