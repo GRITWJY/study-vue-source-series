@@ -5,7 +5,11 @@ export class HashHistory extends History {
 		super(router, base)
 	}
 
-	setupListeners () {}
+	setupListeners() {
+		window.addEventListener('hashchange', () => {
+			console.log('wjy-listener')
+		})
+	}
 
 
 	getCurrentLocation() {

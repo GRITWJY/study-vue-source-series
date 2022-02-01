@@ -17,6 +17,7 @@ export class History {
 		this.confirmTransition(route,
 			() => {
 				this.updateRoute(route)
+				onComplete && onComplete(route)
 			},
 			err => {
 			}
