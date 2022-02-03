@@ -1,5 +1,7 @@
 import VNode from "./VNode";
 import config from '../config'
+import { createComponent } from './create-component'
+
 import {
 	isDef,
 	isTrue,
@@ -42,6 +44,7 @@ export function _createElement(context, tag, data, children, normalizationType) 
 				undefined, undefined, context
 			)
 		} else if ((!data) && isDef(Ctor = resolveAsset(context.$options, 'components', tag))) {
+			// Ctro此时是aaa里的内容'template:'.....''
 			vnode = createComponent(Ctor, data, context, children, tag)
 		} else {
 			vnode = new VNode(

@@ -30,7 +30,11 @@ export function isPrimitive(value) {
 
 export const no = (a, b, c) => false
 
-export const identity = (_: any) => _
+export const identity = (_) => _
 
+const hasOwnProperty = Object.prototype.hasOwnProperty
 
+export function hasOwn(obj, key) {
+	return hasOwnProperty.call(obj, key)
+}
 
