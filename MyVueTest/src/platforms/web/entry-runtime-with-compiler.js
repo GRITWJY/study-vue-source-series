@@ -23,7 +23,8 @@ Vue.prototype.$mount = function (el, hydrating) {
 		if (template) {
 			// todo：
 			let render = function (createElement) {
-				return createElement('h1', 'wfasfjkalfjl')
+				// return createElement(('div', {attrs: {"id": "app"}}, [createElement('aaa')], 1))
+				return createElement('div',[createElement('h2','fsafa'),createElement('h2','fsafa')])
 			}
 			options.render = render
 		}

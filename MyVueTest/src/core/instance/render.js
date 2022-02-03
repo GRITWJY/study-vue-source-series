@@ -14,7 +14,6 @@ export function renderMixin(Vue) {
 		const {render} = vm.$options
 		let vnode
 		vnode = render.call(vm._renderProxy, vm.$createElement)
-		console.log('wjy-vnode',vnode)
 		return vnode
 	}
 }
