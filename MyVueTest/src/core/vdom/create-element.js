@@ -1,5 +1,11 @@
-import Vnode from "./vnode";
-import {isPrimitive, isTrue} from "../../shared/util";
+import VNode from "./VNode";
+import config from '../config'
+import {
+	isDef,
+	isTrue,
+	isPrimitive,
+	resolveAsset
+} from '../util/index'
 
 import {
 	normalizeChildren
@@ -29,10 +35,20 @@ export function _createElement(context, tag, data, children, normalizationType) 
 	}
 	let vnode
 	if (typeof tag === 'string') {
-		vnode = new Vnode(
-			tag, data, children,
-			undefined, undefined, context
-		)
+		let Ctor
+		if (config.isReservedTag(tag)) {
+			vnode = new VNode(
+				config.parsePlatformTagName(tag), data, children,
+				undefined, undefined, context
+			)
+		} else if ((!data) && isDef(Ctor = resolveAsset(context.$options, 'components', tag))) {
+			vnode = createComponent(Ctor, data, context, children, tag)
+		} else {
+			vnode = new VNode(
+				tag, data, children,
+				undefined, undefined, context
+			)
+		}
 	}
 	return vnode
 }

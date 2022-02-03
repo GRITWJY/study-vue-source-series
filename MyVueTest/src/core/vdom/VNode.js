@@ -1,6 +1,6 @@
 /* @flow */
 
-export default class Vnode {
+export default class VNode {
 	constructor(
 		tag,
 		data,
@@ -22,5 +22,5 @@ export default class Vnode {
 }
 
 export function createTextVNode (val) {
-	return new Vnode(undefined, undefined, undefined, String(val))
+	return new VNode(undefined, undefined, undefined, String(val))
 }

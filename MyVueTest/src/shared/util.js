@@ -28,3 +28,9 @@ export function isPrimitive(value) {
 }
 
 
+export const no = (a, b, c) => false
+
+export const identity = (_: any) => _
+
+
+
