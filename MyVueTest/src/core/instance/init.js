@@ -1,5 +1,6 @@
 import {initRender} from "./render";
 import {initProxy} from "./proxy";
+import {resolveAsset,mergeOptions} from "../util/index";
 
 export function initMixin(Vue) {
 	Vue.prototype._init = function (options) {
@@ -11,7 +12,10 @@ export function initMixin(Vue) {
 		if (options && options._isComponent) {//自定义组件
 
 		} else {
-			vm.$options = options
+			vm.$options = mergeOptions(
+				options || {},
+				resolveConstructorOptions(vm.constructor),
+				vm)
 		}
 
 		initProxy(vm)
@@ -22,4 +26,10 @@ export function initMixin(Vue) {
 			vm.$mount(vm.$options.el)
 		}
 	}
+}
+
+
+export function resolveConstructorOptions(Ctor) {
+	let options = Ctor.options
+	return options
 }
