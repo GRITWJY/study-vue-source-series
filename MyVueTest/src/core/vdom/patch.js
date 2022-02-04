@@ -48,7 +48,6 @@ export function createPatchFunction(backend) {
 
 	return function patch(oldVnode, vnode, hydrating, removeOnly) {
 		if (isUndef(oldVnode)) {
-			debugger
 		} else {
 			const isRealElement = isDef(oldVnode.nodeType)
 			if (isRealElement) {

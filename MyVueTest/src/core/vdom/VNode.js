@@ -12,7 +12,6 @@ export default class VNode {
 		asyncFactory
 	) {
 		this.tag = tag
-		debugger
 		this.data = data
 		this.children = children
 		this.text = text

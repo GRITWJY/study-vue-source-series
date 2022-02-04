@@ -5,6 +5,25 @@ import {
 import {resolveConstructorOptions} from "../instance/init";
 import VNode from "./VNode";
 
+
+const componentVNodeHooks = {
+	init() {
+		console.log('componentVNodeHooks -init')
+	},
+	prepatch() {
+		console.log('componentVNodeHooks -prepatch')
+	},
+	insert() {
+		console.log('componentVNodeHooks -insert')
+	},
+	destroy() {
+		console.log('componentVNodeHooks  -destroy')
+	}
+}
+
+
+const hooksToMerge = Object.keys(componentVNodeHooks)
+
 export function createComponent(Ctor, data, context, children, tag) {
 	if (isUndef(Ctor)) {
 		return
@@ -43,13 +62,22 @@ export function createComponent(Ctor, data, context, children, tag) {
 		context,
 		{Ctor, propsData, listeners, tag, children},
 		asyncFactory)
+	debugger
 
 	return vnode
 }
 
 
 function installComponentHooks(data) {
-
+	const hooks = data.hook || (data.hook = {})
+	for (let i = 0; i < hooksToMerge.length; i++) {
+		const key = hooksToMerge[i]
+		const existing = hooks[key]
+		const toMerge = componentVNodeHooks[key]
+		if (existing !== toMerge && !(existing && existing._merged)) {
+			hooks[key] = toMerge
+		}
+	}
 }
 
 
