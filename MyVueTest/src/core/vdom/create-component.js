@@ -62,8 +62,6 @@ export function createComponent(Ctor, data, context, children, tag) {
 		context,
 		{Ctor, propsData, listeners, tag, children},
 		asyncFactory)
-	debugger
-
 	return vnode
 }
 
