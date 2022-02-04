@@ -108,6 +108,7 @@ export function createComponentInstanceForVnode(vnode, parent) {
 		parent
 	}
 
+	// 调用到_init，/core/instalce
 	return new vnode.componentOptions.Ctor(options)
 }
 
