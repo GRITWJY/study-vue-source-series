@@ -1,4 +1,3 @@
-
 import {
 	isUndef,
 	isObject
@@ -19,21 +18,37 @@ export function createComponent(Ctor, data, context, children, tag) {
 	if (typeof Ctor !== 'function') {
 		return
 	}
+
+	let asyncFactory
+	if (isUndef(Ctor.cid)) {
+		// todo:
+	}
+
+
 	data = data || {}
 
-	debugger
+	const propsData = ''
+	const listeners = ''
 
 	// 安装组件钩子函数
 	// todo
 	installComponentHooks(data)
 	const name = Ctor.options.name || tag
-	const vnode = new VNode(undefined, undefined, undefined, 'aaa')
+	const vnode = new VNode(
+		`vue-component-${Ctor.cid}${name ? `-${name}` : ''}`,
+		data,
+		undefined,
+		undefined,
+		undefined,
+		context,
+		{Ctor, propsData, listeners, tag, children},
+		asyncFactory)
 
 	return vnode
 }
 
 
-function installComponentHooks (data) {
+function installComponentHooks(data) {
 
 }
 

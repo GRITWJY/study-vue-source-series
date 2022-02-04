@@ -12,13 +12,14 @@ export default class VNode {
 		asyncFactory
 	) {
 		this.tag = tag
+		debugger
 		this.data = data
 		this.children = children
 		this.text = text
 		this.elm = elm
 		this.context = context
+		this.componentOptions = componentOptions
 	}
-
 }
 
 export function createTextVNode(val) {

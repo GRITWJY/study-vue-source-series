@@ -17,10 +17,8 @@ export function initExtend(Vue) {
 
 		const Super = this // vue
 		const SuperId = Super.cid
-		debugger
 
-
-		const Sub = function VueComponent (options) {
+		const Sub = function VueComponent(options) {
 			this._init(options)
 		}
 
@@ -28,11 +26,11 @@ export function initExtend(Vue) {
 		Sub.prototype = Object.create(Super.prototype)
 		Sub.prototype.constructor = Sub
 		Sub.cid = cid++
+		debugger
 		Sub.options = mergeOptions(
 			Super.options,
 			extendOptions
 		)
 		return Sub
-
 	}
 }
