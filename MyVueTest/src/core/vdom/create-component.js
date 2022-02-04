@@ -4,10 +4,29 @@ import {
 } from "../util/index";
 import {resolveConstructorOptions} from "../instance/init";
 import VNode from "./VNode";
+import {
+	activeInstance
+} from "../instance/lifecycle";
 
 
 const componentVNodeHooks = {
-	init() {
+	// createElement时， 会在判断i.init时，并执行
+	// 把componentInstance挂载到上面
+	init(vnode, hydrating) {
+		if (
+			vnode.componentInstance &&
+			!vnode.componentInstance._isDestroyed &&
+			vnode.data.keepAlive
+		) {
+		} else {
+			// activeInstance  vm  ？
+			// 如何创建componentInstance
+			const child = vnode.componentInstance = createComponentInstanceForVnode(
+				vnode,
+				activeInstance
+			)
+
+		}
 		console.log('componentVNodeHooks -init')
 	},
 	prepatch() {
@@ -79,7 +98,18 @@ function installComponentHooks(data) {
 }
 
 
+export function createComponentInstanceForVnode(vnode, parent) {
+	// parent=>activeInstance in lifecycle state
+	// 为node创建实例
 
+	const options = {
+		_isComponent: true,
+		_parentVnode: vnode,
+		parent
+	}
+
+	return new vnode.componentOptions.Ctor(options)
+}
 
 
 

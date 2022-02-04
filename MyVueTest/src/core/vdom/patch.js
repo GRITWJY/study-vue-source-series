@@ -36,7 +36,7 @@ export function createPatchFunction(backend) {
 			// 如果存在init钩子则执行
 			// 执行实例创建和挂载
 			if (isDef(i = i.hook) && isDef(i = i.init)) {
-				// 此时i是init
+				// 此时i是init，应该是在这里执行init的时候挂载componentInstance
 				i(vnode, false)
 			}
 			// 插入到父元素
