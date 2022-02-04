@@ -21,6 +21,6 @@ export default class VNode {
 
 }
 
-export function createTextVNode (val) {
+export function createTextVNode(val) {
 	return new VNode(undefined, undefined, undefined, String(val))
 }
