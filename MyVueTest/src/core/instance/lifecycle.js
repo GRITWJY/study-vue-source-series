@@ -16,6 +16,20 @@ export function setActiveInstance(vm) {
 
 }
 
+
+export function initLifecycle(vm) {
+	const options = vm.$options
+	let parent = options.parent
+	if (parent) {
+		// 当前组件实例加入父组件中
+		parent.$children.push(vm)
+	}
+	console.log('parent',parent)
+	vm.$parent = parent
+	vm.$root = parent ? parent.$root : vm
+	vm.$children = []
+}
+
 export function lifecycleMixin(Vue) {
 	Vue.prototype._update = function (vnode, hydrating) {
 		const vm = this
@@ -31,6 +45,7 @@ export function lifecycleMixin(Vue) {
 		restoreActiveInstance()
 	}
 }
+
 
 export function mountComponent(vm, el, hydrating) {
 	vm.$el = el

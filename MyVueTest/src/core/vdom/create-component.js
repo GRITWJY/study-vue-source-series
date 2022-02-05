@@ -109,6 +109,7 @@ export function createComponentInstanceForVnode(vnode, parent) {
 	}
 
 	// 调用到_init，/core/instalce
+	// 这里调用Ctor，就会走到initlifecycle
 	return new vnode.componentOptions.Ctor(options)
 }
 

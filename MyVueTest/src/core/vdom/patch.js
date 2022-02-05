@@ -30,7 +30,6 @@ export function createPatchFunction(backend) {
 
 	function createComponent(vnode, insertedVnodeQueue, parentElm, refElm) {
 		let i = vnode.data
-		debugger
 		if (isDef(i)) {
 			const isReactivated = isDef(vnode.componentInstance)
 			// 如果存在init钩子则执行
@@ -42,7 +41,6 @@ export function createPatchFunction(backend) {
 			// 插入到父元素
 			// todo: 没有这个
 			if (isDef(vnode.componentInstance)) {
-				debugger
 			}
 
 		}

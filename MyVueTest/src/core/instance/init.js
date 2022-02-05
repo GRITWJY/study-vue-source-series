@@ -1,6 +1,7 @@
 import {initRender} from "./render";
 import {initProxy} from "./proxy";
 import {resolveAsset, mergeOptions} from "../util/index";
+import {initLifecycle} from "./lifecycle";
 
 export function initMixin(Vue) {
 	Vue.prototype._init = function (options) {
@@ -23,6 +24,9 @@ export function initMixin(Vue) {
 		}
 
 		initProxy(vm)
+		initLifecycle(vm)    // 声明 $parent, $root, $children, $refs
+
+
 		initRender(vm)     // 声明$slots, $createElement()
 
 
@@ -56,9 +60,5 @@ export function initInternalComponent(vm, options) {
 	opts._renderChildren = vnodeComponentOptions.children
 	opts._componentTag = vnodeComponentOptions.tag
 
-	if (options.render) {
-		opts.render = options.render
-		opts.staticRenderFns = options.staticRenderFns
-	}
 
 }
