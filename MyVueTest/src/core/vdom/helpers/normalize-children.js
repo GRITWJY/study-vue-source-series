@@ -20,6 +20,5 @@ function normalizeArrayChildren(children) {
 			res.push(c)
 		}
 	}
-	console.log('res', res)
 	return res
 }
