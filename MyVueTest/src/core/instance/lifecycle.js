@@ -37,6 +37,7 @@ export function lifecycleMixin(Vue) {
 
 		const restoreActiveInstance = setActiveInstance(vm)
 
+		// 子组件逻辑再次
 		if (!prevVnode) {
 			// 传入的是真实的dom
 			vm.__patch__(vm.$el, vnode, hydrating, false)

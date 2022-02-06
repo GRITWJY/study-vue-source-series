@@ -43,6 +43,7 @@ export function _createElement(context, tag, data, children, normalizationType) 
 				config.parsePlatformTagName(tag), data, children,
 				undefined, undefined, context
 			)
+			// 问题在这，options上没有components
 		} else if ((!data) && isDef(Ctor = resolveAsset(context.$options, 'components', tag))) {
 			// Ctro此时是aaa里的内容'template:'.....''
 			vnode = createComponent(Ctor, data, context, children, tag)

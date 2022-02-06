@@ -7,6 +7,15 @@ const mount = Vue.prototype.$mount
 Vue.prototype.$mount = function (el, hydrating) {
 	el = el && query(el)
 	const options = this.$options
+
+	if (options._componentTag) {
+		let render = function (createElement) {
+			return createElement('div','aaab')
+		}
+		options.render = render
+
+	}
+
 	if (!options.render) {
 		let template = options.template
 		if (template) {
@@ -23,7 +32,7 @@ Vue.prototype.$mount = function (el, hydrating) {
 		if (template) {
 			// todo：
 			let render = function (createElement) {
-				return createElement('div',[createElement('h2','fsafa'),createElement('aaa'),createElement('bbb')])
+				return createElement('div', [createElement('h1','aaa'), createElement('bbb')])
 			}
 			options.render = render
 		}

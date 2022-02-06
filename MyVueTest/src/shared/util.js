@@ -28,7 +28,9 @@ export function isPrimitive(value) {
 }
 
 
-export const no = (a, b, c) => false
+export const no = (a, b, c) => {
+	return (a === 'div' || a === 'h1')
+}
 
 export const identity = (_) => _
 

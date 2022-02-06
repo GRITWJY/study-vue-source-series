@@ -25,6 +25,8 @@ const componentVNodeHooks = {
 				vnode,
 				activeInstance
 			)
+			child.$mount(hydrating ? vnode.elm : undefined, hydrating)
+
 
 		}
 		console.log('componentVNodeHooks -init')
