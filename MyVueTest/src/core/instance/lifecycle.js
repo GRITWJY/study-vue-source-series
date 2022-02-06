@@ -24,7 +24,7 @@ export function initLifecycle(vm) {
 		// 当前组件实例加入父组件中
 		parent.$children.push(vm)
 	}
-	console.log('parent', parent)
+
 	vm.$parent = parent
 	vm.$root = parent ? parent.$root : vm
 	vm.$children = []

@@ -15,8 +15,6 @@ const resolve = p => {
 	}
 }
 
-console.log(resolve('web/entry-runtime-with-compiler.js'))
-
 
 const builds = {
 	'web-full-dev': {

@@ -40,7 +40,7 @@ export function mergeOptions(parent, child, vm) {
 		options[key] = strat(parent[key], child[key])
 	}
 
-	console.log(options)
+
 	return options
 }
 

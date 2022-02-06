@@ -1,5 +1,7 @@
 import Vue from './runtime/index'
 import {query} from "./util/index";
+import {compileToFunctions} from './complier/index'
+
 
 const mount = Vue.prototype.$mount
 
@@ -8,13 +10,13 @@ Vue.prototype.$mount = function (el, hydrating) {
 	el = el && query(el)
 	const options = this.$options
 
-	if (options._componentTag) {
-		let render = function (createElement) {
-			return createElement('div','aaab')
-		}
-		options.render = render
-
-	}
+	// if (options._componentTag) {
+	// 	let render = function (createElement) {
+	// 		return createElement('div', 'aaab')
+	// 	}
+	// 	options.render = render
+	//
+	// }
 
 	if (!options.render) {
 		let template = options.template
@@ -31,9 +33,12 @@ Vue.prototype.$mount = function (el, hydrating) {
 		// 如果存在模板,执行编译
 		if (template) {
 			// todo：
-			let render = function (createElement) {
-				return createElement('div', [createElement('h1','aaa'), createElement('bbb')])
-			}
+
+			debugger
+			// 这里最后返回的是compiler函数，
+			const {render, staticRenderFns} = compileToFunctions(template, {}, this)
+			debugger
+
 			options.render = render
 		}
 	}
