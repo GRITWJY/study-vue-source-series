@@ -13,21 +13,6 @@ export class History {
 
 	transitionTo(location, onComplete, onAbort) {
 		const route = this.router.match(location, this.current)
-		// const route = {
-		// 	"path": "/foo/foochild",
-		// 	"fullPath": "/foo/foochild",
-		// 	"matched": [{
-		// 		"path": "/foo",
-		// 		"components": {"default": {"template": "<div>foo<router-view></router-view></div> "}},
-		// 	}, {
-		// 		"path": "/foo/foochild",
-		// 		"components": {"default": {"template": "<div>fooChild</div>"}},
-		// 		"parent": {
-		// 			"path": "/foo",
-		// 			"components": {"default": {"template": "<div>foo<router-view></router-view></div> "}},
-		// 		},
-		// 	}]
-		// }
 		this.confirmTransition(route,
 			() => {
 				this.updateRoute(route)

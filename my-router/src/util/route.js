@@ -1,7 +1,8 @@
 export function createRoute(record, location, redirectedFrom, router) {
 	const route = {
 		path: location.path || '/',
-		matched: record ? formatMatch(record) : []
+		matched: record ? formatMatch(record) : [],
+		params: location.params || {},
 	}
 	return Object.freeze(route)
 }

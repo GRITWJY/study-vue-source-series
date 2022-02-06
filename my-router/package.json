@@ -8,7 +8,10 @@
     "build": "node build/build.js"
   },
   "devDependencies": {
-    "rollup": "^2.34.1"
+    "rollup": "^2.34.1",
+    "path-to-regexp": "^1.8.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-commonjs": "^10.0.2"
   },
   "author": "",
   "license": "ISC"

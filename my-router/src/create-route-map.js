@@ -1,4 +1,6 @@
 import {cleanPath} from "./util/path";
+import Regexp from 'path-to-regexp'
+
 
 export function createRouteMap(routes) {
 	const pathList = []
@@ -20,10 +22,10 @@ export function createRouteMap(routes) {
 function addRouteRecord(pathList, pathMap, nameMap, route, parent, matchAs) {
 	const {path, name} = route
 	const normalizedPath = normalizePath(path, parent)
-
-
+	const pathToRegexpOptions = {}
 	const record = {
 		path: normalizedPath,
+		regex: compileRouteRegex(normalizedPath, pathToRegexpOptions),
 		components: route.components || {default: route.component},
 		parent,
 		matchAs
@@ -49,3 +51,25 @@ function normalizePath(path, parent) {
 	if (parent == null) return path
 	return cleanPath(`${parent.path}/${path}`)
 }
+
+
+function compileRouteRegex(path, pathToRegexpOptions) {
+	const regex = Regexp(path, [], pathToRegexpOptions)
+	return regex
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
