@@ -41,9 +41,16 @@ export function createPatchFunction(backend) {
 			// 插入到父元素
 			// todo: 没有这个
 			if (isDef(vnode.componentInstance)) {
+				initComponent(vnode, insertedVnodeQueue)
+				insert(parentElm, vnode.elm, refElm)
+				return true
 			}
-
 		}
+	}
+
+	function initComponent (vnode, insertedVnodeQueue) {
+		debugger
+		vnode.elm = vnode.componentInstance.$el
 	}
 
 
@@ -77,6 +84,7 @@ export function createPatchFunction(backend) {
 
 
 		if (isUndef(oldVnode)) {
+			createElm(vnode, insertedVnodeQueue)
 		} else {
 			const isRealElement = isDef(oldVnode.nodeType)
 			if (isRealElement) {
@@ -87,5 +95,8 @@ export function createPatchFunction(backend) {
 			// 将新的vdom转换为真实dom
 			createElm(vnode, insertedVnodeQueue, parentElm, nodeOps.nextSibling(oldElm))
 		}
+		// 主要问题是子组件时，在path里的createComponenet中没有执行那个方法
+		// 然后这里没返回vm
+		return vnode.elm
 	}
 }

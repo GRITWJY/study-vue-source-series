@@ -24,7 +24,7 @@ export function initLifecycle(vm) {
 		// 当前组件实例加入父组件中
 		parent.$children.push(vm)
 	}
-	console.log('parent',parent)
+	console.log('parent', parent)
 	vm.$parent = parent
 	vm.$root = parent ? parent.$root : vm
 	vm.$children = []
@@ -40,7 +40,10 @@ export function lifecycleMixin(Vue) {
 		// 子组件逻辑再次
 		if (!prevVnode) {
 			// 传入的是真实的dom
-			vm.__patch__(vm.$el, vnode, hydrating, false)
+			vm.$el = vm.__patch__(vm.$el, vnode, hydrating, false)
+		} else {
+			// updates
+			vm.$el = vm.__patch__(prevVnode, vnode)
 		}
 		// 重置
 		restoreActiveInstance()
@@ -56,5 +59,6 @@ export function mountComponent(vm, el, hydrating) {
 	}
 	console.log(vm._update(vm._render(), hydrating))
 	new Watcher(vm, updateComponent, noop, {}, true)
+
 	return vm
 }

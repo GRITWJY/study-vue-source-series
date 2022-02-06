@@ -11,7 +11,10 @@ export function renderMixin(Vue) {
 
 	Vue.prototype._render = function () {
 		const vm = this
-		const {render} = vm.$options
+		const {render,_parentVnode} = vm.$options
+		// set parent vnode. this allows render functions to have access
+		// to the data on the placeholder node.
+		vm.$vnoe = _parentVnode
 		let vnode
 		vnode = render.call(vm._renderProxy, vm.$createElement)
 		return vnode
