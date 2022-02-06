@@ -27,6 +27,9 @@ export function createMatcher(routes, router) {
 		function _createRoute(record, location, redirectedFrom) {
 			return createRoute(record, location, redirectedFrom, router)
 		}
+
+		return _createRoute(null, location)
+
 	}
 
 	function addRoutes() {
