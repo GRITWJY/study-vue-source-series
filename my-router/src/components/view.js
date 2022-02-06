@@ -16,7 +16,6 @@ export default {
 		const route = parent.$route
 
 		let depth = 0
-		debugger
 		// 相当于是找嵌套组件是在第几层
 		while (parent && parent._routerRoot !== parent) {
 			const vnodeData = parent.$vnode ? parent.$vnode.data : {}

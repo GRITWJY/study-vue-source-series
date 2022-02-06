@@ -5,7 +5,6 @@ import {createRoute} from "./util/route";
 
 export function createMatcher(routes, router) {
 	const {pathList, pathMap, nameMap} = createRouteMap(routes)
-	debugger
 	function match(raw, currentRoute, redirectedForm) {
 		const location = normalizeLocation(raw, currentRoute, false, router)
 		const {name} = location
@@ -15,6 +14,7 @@ export function createMatcher(routes, router) {
 		} else if (location.path) {
 			const record = pathMap[location.path]
 			if (matchRoute()) {
+
 				return _createRoute(record, location, redirectedForm)
 			}
 		}

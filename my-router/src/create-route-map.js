@@ -45,7 +45,6 @@ function addRouteRecord(pathList, pathMap, nameMap, route, parent, matchAs) {
 }
 
 function normalizePath(path, parent) {
-	debugger
 	if (path[0] === '/') return path
 	if (parent == null) return path
 	return cleanPath(`${parent.path}/${path}`)

@@ -1,18 +1,18 @@
 import Vue from 'vue'
-import Router from 'vue-router'
-import myRouter from 'my-router'
+// import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
+import MyRouter from 'my-router'
 
-Vue.use(Router)
-Vue.use(myRouter)
+// Vue.use(Router)
+Vue.use(MyRouter)
 
-new myRouter({'gsd':"fdsaasf"})
+// new myRouter({'gsd':"fdsaasf"})
 
 
-export default new Router({
+export default new MyRouter({
   routes: [
     {
-      path: '/',
+      path: '/helloworld',
       name: 'HelloWorld',
       component: HelloWorld
     }
