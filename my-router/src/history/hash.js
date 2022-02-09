@@ -21,11 +21,19 @@ export class HashHistory extends History {
 		const {current} = this
 		this.transitionTo(
 			location,
-			route=>{
+			route => {
 				onComplete && onComplete(route)
 			},
 			onAbort
 		)
+	}
+
+
+	ensureURL() {
+		const current = this.current.fullPath
+		if (getHash() !== current) {
+			replaceHash(current)
+		}
 	}
 }
 
@@ -38,3 +46,24 @@ export function getHash() {
 	href = href.slice(index + 1)
 	return href
 }
+
+function getUrl(path) {
+	const href = window.location.href
+	const i = href.indexOf('#')
+	const base = i >= 0 ? href.slice(0, i) : href
+	return `${base}#${path}`
+}
+
+function replaceHash(path) {
+	window.location.replace(getUrl(path))
+}
+
+
+
+
+
+
+
+
+
+
