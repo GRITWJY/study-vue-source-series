@@ -1,4 +1,5 @@
 import {START} from "../util/route";
+import {runQueue} from "../util/async";
 
 export class History {
 
@@ -25,7 +26,43 @@ export class History {
 	}
 
 	confirmTransition(route, onComplete, onAbort) {
-		onComplete()
+		const current = this.current
+
+		const abort = err => {
+			onAbort && onAbort(err)
+		}
+
+
+		const queue = [].concat(
+			this.router.beforeHooks
+		)
+		const iterator = (hook, next) => {
+			hook(route, current, (to) => {
+				if (to === false) {
+					this.ensureURL(true)
+					abort(to)
+				} else if (
+					typeof to === 'string' ||
+					(typeof to === 'object' &&
+						(typeof to.path === 'string' || typeof to.name === 'string'))
+				) {
+					abort()
+					if (typeof to === 'object' && to.replace) {
+						this.replace(to)
+					} else {
+						this.push(to)
+					}
+				} else {
+					next(to)
+				}
+			})
+		}
+
+		runQueue(queue, iterator, () => {
+			onComplete()
+
+		})
+
 	}
 
 	updateRoute(route) {

@@ -16,6 +16,7 @@ export default class VueRouter {
 		this.options = options
 		this.matcher = createMatcher(options.routes || [], this)
 
+		this.beforeHooks = []
 
 		let mode = options.mode || 'hash'
 		this.fallback = mode === 'history' && !supportsPushState && options.fallback !== false
@@ -53,7 +54,6 @@ export default class VueRouter {
 
 	init(app) {
 		this.apps.push(app)
-		// todo:
 
 		this.app = app
 		const history = this.history
@@ -82,24 +82,44 @@ export default class VueRouter {
 			return new Promise((resolve, reject) => {
 				this.history.push(location, resolve, reject)
 			})
-		}else {
+		} else {
 			this.history.push(location, onComplete, onAbort)
 		}
 	}
+
 	replace(location, onComplete, onAbort) {
 		if (!onComplete && !onAbort && typeof Promise !== 'undefined') {
 			return new Promise((resolve, reject) => {
 				this.history.replace(location, resolve, reject)
 			})
-		}else {
+		} else {
 			this.history.replace(location, onComplete, onAbort)
 		}
 	}
-	go (n) {
+
+	go(n) {
 		this.history.go(n)
 	}
 
+	back() {
+		this.go(-1)
+	}
 
+	forward() {
+		this.go(1)
+	}
+
+	beforeEach(fn) {
+		return registerHook(this.beforeHooks, fn)
+	}
+}
+
+function registerHook(list, fn) {
+	list.push(fn)
+	return () => {
+		const i = list.indexOf(fn)
+		if (i > -1) list.splice(i, 1)
+	}
 }
 
 

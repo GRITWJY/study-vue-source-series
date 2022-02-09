@@ -47,10 +47,10 @@ export class HashHistory extends History {
 	}
 
 
-	ensureURL() {
+	ensureURL(push) {
 		const current = this.current.fullPath
 		if (getHash() !== current) {
-			replaceHash(current)
+			push ? pushHash(current) : replaceHash(current)
 		}
 	}
 }

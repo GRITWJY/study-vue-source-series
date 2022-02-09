@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <title>Title</title>
   <script src="../dist/vue-origin.js"></script>
-<!--  <script src="../dist/vue-router-origin.js"></script>-->
-    <script src="../dist/vue-router.js"></script>
-<!--    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>-->
+  <!--  <script src="../dist/vue-router-origin.js"></script>-->
+  <script src="../dist/vue-router.js"></script>
+  <!--    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>-->
 </head>
 <body>
   <div id="app">
@@ -48,6 +48,15 @@
 			routes // (缩写) 相当于 routes: routes
 		})
 
+		router.beforeEach((to, from, next) => {
+			if (to.path !== '/foo') {
+				console.log('强制跳转')
+				next({path:'/foo'})
+			} else {
+				next()
+			}
+		})
+
 		// 4. 创建和挂载根实例。
 		// 记得要通过 router 配置参数注入路由，
 		// 从而让整个应用都有路由功能
@@ -57,12 +66,12 @@
 				routertopage() {
 					router.push({path: 'foo'})
 				},
-				routerreplace(){
-					router.replace({ path: '/bar' })
-        },
-				routergo(){
+				routerreplace() {
+					router.replace({path: '/bar'})
+				},
+				routergo() {
 					router.go(-1)
-        }
+				}
 			}
 		}).$mount('#app')
 
