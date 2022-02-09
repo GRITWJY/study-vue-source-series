@@ -17,6 +17,7 @@ export default class VueRouter {
 		this.matcher = createMatcher(options.routes || [], this)
 
 		this.beforeHooks = []
+		this.afterHooks = []
 
 		let mode = options.mode || 'hash'
 		this.fallback = mode === 'history' && !supportsPushState && options.fallback !== false
@@ -111,6 +112,10 @@ export default class VueRouter {
 
 	beforeEach(fn) {
 		return registerHook(this.beforeHooks, fn)
+	}
+
+	afterEach(fn) {
+		return registerHook(this.afterHooks, fn)
 	}
 }
 

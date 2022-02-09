@@ -19,6 +19,7 @@ export class History {
 				this.updateRoute(route)
 				onComplete && onComplete(route)
 				this.ensureURL()
+
 			},
 			err => {
 			}
@@ -66,7 +67,12 @@ export class History {
 	}
 
 	updateRoute(route) {
+		const prev = this.current
+
 		this.current = route
 		this.cb && this.cb(route)
+		this.router.afterHooks.forEach(hook => {
+			hook && hook(route, prev)
+		})
 	}
 }
