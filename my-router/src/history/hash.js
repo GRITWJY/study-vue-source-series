@@ -29,6 +29,23 @@ export class HashHistory extends History {
 		)
 	}
 
+	go (n) {
+		window.history.go(n)
+	}
+
+
+	replace(location, onComplete, onAbort) {
+		const {current} = this
+		this.transitionTo(
+			location,
+			route => {
+				replaceHash(route.fullPath)
+				onComplete && onComplete(route)
+			},
+			onAbort
+		)
+	}
+
 
 	ensureURL() {
 		const current = this.current.fullPath

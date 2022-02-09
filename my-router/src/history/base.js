@@ -17,7 +17,6 @@ export class History {
 			() => {
 				this.updateRoute(route)
 				onComplete && onComplete(route)
-				debugger
 				this.ensureURL()
 			},
 			err => {

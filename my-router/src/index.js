@@ -86,6 +86,20 @@ export default class VueRouter {
 			this.history.push(location, onComplete, onAbort)
 		}
 	}
+	replace(location, onComplete, onAbort) {
+		if (!onComplete && !onAbort && typeof Promise !== 'undefined') {
+			return new Promise((resolve, reject) => {
+				this.history.replace(location, resolve, reject)
+			})
+		}else {
+			this.history.replace(location, onComplete, onAbort)
+		}
+	}
+	go (n) {
+		this.history.go(n)
+	}
+
+
 }
 
 

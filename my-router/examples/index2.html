@@ -18,7 +18,9 @@
       <router-link to="/foo">Go to Foo</router-link>
       <router-link to="/bar">Go to Bar</router-link>
     </p>
-    <button @click="routertopage">点我</button>
+    <button @click="routertopage">点我routerpush</button>
+    <button @click="routerreplace">点我routerReplace</button>
+    <button @click="routergo">点我routerGo</button>
     <!-- 路由出口 -->
     <!-- 路由匹配到的组件将渲染在这里 -->
     <router-view></router-view>
@@ -54,7 +56,13 @@
 			methods: {
 				routertopage() {
 					router.push({path: 'foo'})
-				}
+				},
+				routerreplace(){
+					router.replace({ path: '/bar' })
+        },
+				routergo(){
+					router.go(-1)
+        }
 			}
 		}).$mount('#app')
 
