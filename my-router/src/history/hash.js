@@ -16,6 +16,17 @@ export class HashHistory extends History {
 	getCurrentLocation() {
 		return getHash()
 	}
+
+	push(location, onComplete, onAbort) {
+		const {current} = this
+		this.transitionTo(
+			location,
+			route=>{
+				onComplete && onComplete(route)
+			},
+			onAbort
+		)
+	}
 }
 
 

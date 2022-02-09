@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
-  <script src="https://unpkg.com/vue/dist/vue.js"></script>
-<!--    <script src="../dist/vue-router-origin.js"></script>-->
-  <script src="../dist/vue-router.js"></script>
-  <!--  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>-->
+  <script src="../dist/vue-origin.js"></script>
+<!--  <script src="../dist/vue-router-origin.js"></script>-->
+    <script src="../dist/vue-router.js"></script>
+<!--    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>-->
 </head>
 <body>
   <div id="app">
@@ -18,6 +18,7 @@
       <router-link to="/foo">Go to Foo</router-link>
       <router-link to="/bar">Go to Bar</router-link>
     </p>
+    <button @click="routertopage">点我</button>
     <!-- 路由出口 -->
     <!-- 路由匹配到的组件将渲染在这里 -->
     <router-view></router-view>
@@ -35,13 +36,13 @@
 		// 或者，只是一个组件配置对象。
 		// 我们晚点再讨论嵌套路由。
 		const routes = [
-			{path: '/foo/:id', component: Foo,},
+			{path: '/foo', component: Foo,},
 			{path: '/bar', component: Bar}
 		]
 
 		// 3. 创建 router 实例，然后传 `routes` 配置
 		// 你还可以传别的配置参数, 不过先这么简单着吧。
-		const router = new MyVueRouter({
+		const router = new VueRouter({
 			routes // (缩写) 相当于 routes: routes
 		})
 
@@ -49,7 +50,12 @@
 		// 记得要通过 router 配置参数注入路由，
 		// 从而让整个应用都有路由功能
 		const app = new Vue({
-			router
+			router,
+			methods: {
+				routertopage() {
+					router.push({path: 'foo'})
+				}
+			}
 		}).$mount('#app')
 
 		// 现在，应用已经启动了！

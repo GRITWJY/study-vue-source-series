@@ -7,7 +7,7 @@ import {HTML5History} from "./history/html5";
 import {AbstractHistory} from "./history/abstract";
 import {createMatcher} from "./creat-matcher";
 
-export default class MyVueRouter {
+export default class VueRouter {
 
 	constructor(options = {}) {
 
@@ -76,10 +76,20 @@ export default class MyVueRouter {
 			})
 		})
 	}
+
+	push(location, onComplete, onAbort) {
+		if (!onComplete && !onAbort && typeof Promise !== 'undefined') {
+			return new Promise((resolve, reject) => {
+				this.history.push(location, resolve, reject)
+			})
+		}else {
+			this.history.push(location, onComplete, onAbort)
+		}
+	}
 }
 
 
-MyVueRouter.install = install
+VueRouter.install = install
 if (inBrowser && window.Vue) {
-	window.Vue.use(MyVueRouter)
+	window.Vue.use(VueRouter)
 }
