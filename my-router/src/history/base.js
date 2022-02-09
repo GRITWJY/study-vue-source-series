@@ -1,5 +1,6 @@
 import {START} from "../util/route";
 import {runQueue} from "../util/async";
+import {isSameRoute} from "../util/route";
 
 export class History {
 
@@ -32,8 +33,19 @@ export class History {
 		const abort = err => {
 			onAbort && onAbort(err)
 		}
+		const lastRouteIndex = route.matched.length - 1
+		const lastCurrentIndex = current.matched.length - 1
 
 
+		if (
+			isSameRoute(route, current) &&
+			// in the case the route map has been dynamically appended to
+			lastRouteIndex === lastCurrentIndex &&
+			route.matched[lastRouteIndex] === current.matched[lastCurrentIndex]
+		) {
+			this.ensureURL()
+			return abort()
+		}
 		const queue = [].concat(
 			this.router.beforeHooks
 		)

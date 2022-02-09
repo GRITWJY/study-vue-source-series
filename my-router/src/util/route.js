@@ -1,3 +1,5 @@
+const trailingSlashRE = /\/?$/
+
 export function createRoute(record, location, redirectedFrom, router) {
 	const route = {
 		path: location.path || '/',
@@ -25,4 +27,16 @@ function formatMatch(record) {
 
 function getFullPath({path}) {
 	return (path || '/')
+}
+
+export function isSameRoute(a, b) {
+	if (b === START) {
+		return a === b
+	} else if (!b) {
+		return false
+	} else if (a.path && b.path) {
+		return a.path === b.path
+	} else {
+		return false
+	}
 }
