@@ -22,6 +22,7 @@ export class HashHistory extends History {
 		this.transitionTo(
 			location,
 			route => {
+				pushHash(route.fullPath)
 				onComplete && onComplete(route)
 			},
 			onAbort
@@ -37,6 +38,9 @@ export class HashHistory extends History {
 	}
 }
 
+function pushHash(path) {
+	window.location.hash = path
+}
 
 export function getHash() {
 	let href = window.location.href
