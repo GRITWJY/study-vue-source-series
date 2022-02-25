@@ -13,3 +13,9 @@
 这是我的博客地址 http://121.5.100.85:10001
 
 没有弄域名，用域名好像要备案啥的，有点麻烦
+
+------2022-02-25
+这两个仓库都只是把自己平常收集到的放在了里面，还没有对自己项目做一个整理，也没有怎么去管理。之后有时间再来重新整理这两个库。
+前端工具函数库https://github.com/GRITWJY/myFrontUtil/tree/master
+
+前端组件库https://github.com/GRITWJY/wjyComponnet
