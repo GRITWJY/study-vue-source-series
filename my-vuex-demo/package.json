@@ -1,0 +1,17 @@
+{
+  "name": "my-vuex-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "vue-cli-service serve"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vue/cli-service": "~4.5.0",
+    "vue": "^2.6.11",
+    "vue-template-compiler": "^2.6.11",
+    "vuex": "^3.6.2"
+  }
+}

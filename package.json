@@ -1,0 +1,19 @@
+{
+  "name": "vue-source-series",
+  "version": "1.0.0",
+  "description": "此仓库是自己学习源码的几个demo的集合，最开始是学习的尚硅谷的视频https://www.bilibili.com/video/BV1EV411h79m?spm_id_from=333.999.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GRITWJY/study-vue-source-series.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GRITWJY/study-vue-source-series/issues"
+  },
+  "homepage": "https://github.com/GRITWJY/study-vue-source-series#readme"
+}
