@@ -1,12 +1,20 @@
 <template>
   <div>
-    App - {{ $store.state.count }}
-    <button @click="clickEvent">commit</button>
+    <addition></addition>
+    <hr>
+    <subtraction></subtraction>
   </div>
 </template>
 
 <script>
+import addition from '@/components/addition'
+import subtraction from '@/components/subtraction'
+
 export default {
+  components: {
+    addition,
+    subtraction
+  },
   data() {
     return {}
   },
