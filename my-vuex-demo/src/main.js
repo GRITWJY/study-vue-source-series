@@ -1,21 +1,10 @@
 import Vue from 'vue';
 import App from './App'
-import Vuex from 'vuex'
+import store from "@/store";
 
-Vue.use(Vuex)
-
-const store = new Vuex.Store({
-	state: {
-		count: 0
-	},
-	mutations: {
-		increment(state) {
-			state.count++
-		}
-	}
-})
 
 new Vue({
+	el: '#app',
 	render: h => h(App),
 	store
-}).$mount('#app')
+})
