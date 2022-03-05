@@ -6,7 +6,7 @@ export let _Vue
 
 export function install(Vue) {
 
-	if (install.installed && _Vue === Vue) return
+	if (install.installed && _Vue === Vue) return  // 避免重复安装
 	install.installed = true
 	_Vue = Vue
 
@@ -27,12 +27,15 @@ export function install(Vue) {
 			})
 			 */
 			if (isDef(this.$options.router)) {
-				this._routerRoot = this
-				this._router = this.$options.router
-				this._router.init(this)
+				this._routerRoot = this//保存挂载VueRouter的Vue实例，此处为根实例
+				// 传进来的router实例
+				this._router = this.$options.router // 保存VueRouter实例，this.$options.router仅存在于Vue根实例上，其它Vue组件不包含此属性，所以下面的初始化，只会执行一次
+				this._router.init(this) // 初始化VueRouter实例，并传入Vue根实例
+				// 响应式定义_route属性，保证_route发生变化时，组件(router-view)会重新渲染
 				Vue.util.defineReactive(this, '_route', this._router.history.current)
 			} else {
 				// 所有组件拿到router,route
+				// 回溯查找_routerRoot
 				this._routerRoot = (this.$parent && this.$parent._routerRoot) || this
 			}
 			// todo:
@@ -41,12 +44,15 @@ export function install(Vue) {
 		}
 	})
 	Object.defineProperty(Vue.prototype, '$router', {
-		get () { return this._routerRoot._router }
+		get() {
+			return this._routerRoot._router
+		}
 	})
 
-		Object.defineProperty(Vue.prototype, '$route', {
-		// this._router.history.current)
-		get () { return this._routerRoot._route }
+	Object.defineProperty(Vue.prototype, '$route', {
+		get() {
+			return this._routerRoot._route
+		}
 	})
 
 
