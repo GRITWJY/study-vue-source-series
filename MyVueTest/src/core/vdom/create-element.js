@@ -37,6 +37,10 @@ export function _createElement(context, tag, data, children, normalizationType) 
 	}
 	let vnode
 	if (typeof tag === 'string') {
+		// 标签是字符串时，该标签有三种可能：
+		//   1、平台保留标签
+		//   2、自定义组件
+		//   3、不知名标签
 		let Ctor
 		if (config.isReservedTag(tag)) {
 			vnode = new VNode(

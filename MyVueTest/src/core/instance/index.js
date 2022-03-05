@@ -2,9 +2,10 @@ import {initMixin} from "./init";
 import {renderMixin} from './render'
 import {lifecycleMixin} from "./lifecycle";
 
-
+// Vue 的构造函数
 function Vue(options) {
 	// 初始化
+	// 调用 Vue.prototype._init 方法，该方法是在 initMixin 中定义的
 	this._init(options)
 }
 

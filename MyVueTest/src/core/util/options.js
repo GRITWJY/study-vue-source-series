@@ -14,6 +14,8 @@ const defaultStrat = function (parentVal, childVal) {
 
 export function resolveAsset(options, type, id, warnMissing) {
 	/* istanbul ignore if */
+	// 就是看看options里的components里有没有这个id，有的话就是组件
+	// 返回组件内容
 	if (typeof id !== 'string') {
 		return
 	}
