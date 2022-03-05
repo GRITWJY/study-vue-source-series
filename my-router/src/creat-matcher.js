@@ -58,6 +58,14 @@ function matchRoute(regex, path, params) {
 	} else if (!params) {
 		return true
 	}
+	// 符合正则 && params存在，需要对params进行正确赋值
+	// path-to-regexp会将每个动态路由标记处处理成正则的一个组，所以i从1开始
+	// 参考https://www.npmjs.com/package/path-to-regexp
+	// const keys = [];
+	// const regexp = pathToRegexp("/foo/:bar", keys);
+	// regexp = /^\/foo\/([^\/]+?)\/?$/i
+	// :bar就被处理成正则的一个组了
+	// keys = [{ name: 'bar', prefix: '/', suffix: '', pattern: '[^\\/#\\?]+?', modifier: '' }]
 
 	for (let i = 1, len = m.length; i < len; ++i) {
 		const key = regex.keys[i - 1]
