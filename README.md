@@ -19,3 +19,9 @@
 前端工具函数库https://github.com/GRITWJY/myFrontUtil/tree/master
 
 前端组件库https://github.com/GRITWJY/wjyComponnet
+
+------2022-03-24 
+由前端时间学习vue源码经历和最近在忙项目的事，才发现vue源码不好学。
+现在转为把功能单独出来学习，而不是整个系统的学习。
+vue的学习过程是先按照[B站上尚硅谷的视频](https://www.bilibili.com/video/BV1G54y1s7xV?p=1)手敲一遍，
+再按照[vue源码系列-中文社区](https://vue-js.com/learn-vue/start/#_2-%E5%AD%A6%E4%B9%A0%E8%A7%84%E5%88%92)学习vue源码
