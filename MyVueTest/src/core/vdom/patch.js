@@ -71,7 +71,6 @@ export function createPatchFunction(backend) {
   }
 
   function initComponent(vnode, insertedVnodeQueue) {
-    debugger;
     vnode.elm = vnode.componentInstance.$el;
   }
 

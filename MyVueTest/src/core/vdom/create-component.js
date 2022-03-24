@@ -112,6 +112,9 @@ function installComponentHooks(data) {
   }
 }
 
+/**
+ * new vnode.componentOptions.Ctor(options) => 得到 Vue 组件实例
+ */
 export function createComponentInstanceForVnode(vnode, parent) {
   // parent=>activeInstance in lifecycle state
   // 为node创建实例
@@ -124,5 +127,6 @@ export function createComponentInstanceForVnode(vnode, parent) {
 
   // 调用到_init，/core/instalce
   // 这里调用Ctor，就会走到initlifecycle
+  // new VueComponent(options) => Vue 实例
   return new vnode.componentOptions.Ctor(options);
 }
