@@ -2,12 +2,16 @@ import { def } from "./utils";
 import defineReactive from "./defineReactive";
 import { arrayMethods } from "./array";
 import observe from "./observe";
+import Dep from "./Dep";
 
 /**
  * Observer类会通过递归的方式把一个对象的所有属性都转化成可观测对象
  */
 export default class Observer {
   constructor(value) {
+    // 每一个Observer的实例身上都有一个dep
+    this.dep = new Dep();
+
     // 给实例(构造函数中的this表示 实例)
     // 添加了__ob__属性，值是这次new的实例
     def(value, "__ob__", this, false);

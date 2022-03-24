@@ -31,14 +31,16 @@ methodsNeedChange.forEach((methodName) => {
       // 有三种方法，能够插入新项
       let inserted = [];
 
+      // 类数组->数组
+      const args = [...arguments];
       switch (methodName) {
         case "push":
         case "unshift":
-          inserted = arguments;
+          inserted = args;
           break;
         case "splice":
           // .splice(idx,num,args)
-          inserted = arguments.slice(2);
+          inserted = args.slice(2);
           break;
       }
 
@@ -49,6 +51,7 @@ methodsNeedChange.forEach((methodName) => {
       // 执行原来方法，此时的this就是数组
       const result = original.apply(this, arguments);
 
+      ob.dep.notify();
       return result;
     },
     false

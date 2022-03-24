@@ -1,7 +1,9 @@
 import observe from "./observe";
+import Dep from "./Dep";
 
 export default function defineReactive(data, key, val) {
-  console.log("我是defineReactive", data, key);
+  // val闭包中的dep
+  const dep = new Dep();
   if (arguments.length === 2) {
     val = data[key];
   }
@@ -13,18 +15,25 @@ export default function defineReactive(data, key, val) {
     configurable: true,
     // getter
     get() {
-      console.log(`你试图访问obj的${key}属性`);
+      // 如果现在处于依赖收集阶段
+      if (window.target) {
+        dep.depend();
+        if (childOb) {
+          childOb.dep.depend();
+        }
+      }
       return val;
     },
     //setter
     set(newValue) {
-      console.log(`你试图改变obj的${key}属性`, newValue);
       if (val === newValue) {
         return;
       }
       val = newValue;
       // 当设置了新值，这个新值也要被observe
       childOb = observe(newValue);
+      // 发布订阅模式，通知dep
+      dep.notify();
     },
   });
 }

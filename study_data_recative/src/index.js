@@ -1,7 +1,7 @@
 import defineReactive from "./defineReactive";
 import observe from "./observe";
-
 import Observer from "./Observer";
+import Watcher from "./Watcher";
 
 var obj = {
   a: {
@@ -14,5 +14,9 @@ var obj = {
 };
 
 observe(obj);
-obj.g.push(99);
-console.log(obj.g);
+
+new Watcher(obj, "a.m.n", (val) => {
+  console.log("watcher", val);
+});
+
+obj.a.m.n = 99;

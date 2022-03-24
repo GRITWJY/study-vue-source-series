@@ -25,3 +25,4 @@
 现在转为把功能单独出来学习，而不是整个系统的学习。
 vue的学习过程是先按照[B站上尚硅谷的视频](https://www.bilibili.com/video/BV1G54y1s7xV?p=1)手敲一遍，
 再按照[vue源码系列-中文社区](https://vue-js.com/learn-vue/start/#_2-%E5%AD%A6%E4%B9%A0%E8%A7%84%E5%88%92)学习vue源码
+这一篇博客在[vue数据响应式原理](http://121.5.100.85:10001/vue/data-reactive.html)
